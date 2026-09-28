@@ -59,11 +59,12 @@ const DOCS = [
   },
   {
     file: '06_Texpa查核_是不是虛的.pdf',
-    title: '補充查核<br>Texpa 的自動化產線是不是虛的？',
+    title: '補充查核<br>Texpa 是不是虛的？宏華的窗簾機是什麼？',
     plainTitle: '補充查核：Texpa 是不是虛的',
     parts: [
       [`${R}/07-texpa-check.md`, null],
       [`${R}/texpa/verify_texpa.md`, null, null, '附錄　Texpa 獨立查核表（T1–T11）'],
+      [`${R}/texpa/verify_curtain_machine.md`, null, null, '附錄　宏華「窗簾機」獨立查核表（S1–S6）'],
     ],
   },
   {
