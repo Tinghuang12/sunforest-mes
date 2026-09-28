@@ -1,0 +1,8 @@
+{
+  "name": "sunforest-pdf-build",
+  "private": true,
+  "type": "module",
+  "description": "把研究與 T1 規格的 markdown 轉成排版 PDF（Chromium 列印，繁中字型）",
+  "scripts": { "build": "node render.mjs" },
+  "dependencies": { "@fontsource/noto-sans-tc": "*", "marked": "^12", "playwright-core": "*" }
+}
