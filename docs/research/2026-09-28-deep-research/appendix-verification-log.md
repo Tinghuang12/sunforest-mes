@@ -10,7 +10,7 @@
 | 2. 獨立查核 | 10 位查核員（V1–V10）以「嘗試推翻」為前提，**用自己的搜尋**重新查每一條論點，不沿用研究員的來源。每人上限約 20 次搜尋。 |
 | 3. 補洞 | 查核員對各主題缺口另行搜尋，新事實須達同一標準才收錄（id 帶 N，例如 V1-N3）。 |
 | 4. 主控二次查核 | 對會改變決策的關鍵論點，由總協調再做獨立搜尋確認（id 為 ML-*，或標註「主控二次查核」）。 |
-| 5. 撰寫與稽核 | 每章先由分析師只用已查核論點撰寫，再由稽核員逐句核對事實依據後定稿。 |
+| 5. 撰寫與稽核 | 每章先由分析師只用已查核論點撰寫，再由稽核員逐句核對事實依據後定稿；最後做跨章一致性稽核。 |
 
 **判定標準**
 
@@ -34,8 +34,8 @@
 | 二、工程技術 | 61 | 21 | 32 | 8 | 0 |
 | 三、市場分析 | 61 | 27 | 28 | 6 | 0 |
 | 四、競爭對手 | 63 | 30 | 32 | 0 | 1 |
-| 五、是否已有人做出來 | 35 | 17 | 18 | 0 | 0 |
-| **合計** | **280** | **110** | **144** | **25** | **1** |
+| 五、是否已有人做出來 | 37 | 18 | 19 | 0 | 0 |
+| **合計** | **282** | **111** | **145** | **25** | **1** |
 
 id 前綴：T＝人才、E＝工程、M＝市場、C＝競爭、D＝是否已有人做出來（研究員編號）；V1–V10-N＝查核員補洞；ML＝主控補查。
 
@@ -2176,6 +2176,7 @@ id 前綴：T＝人才、E＝工程、M＝市場、C＝競爭、D＝是否已有
 - **研究員原說法**：中缝利华（厦门）在 B2B 平台上公開銷售「全自动电脑家纺双侧边自动缝制＋整烫＋裁剪＋堆放流水生产系统」和「利华窗帘智能制造柔性生产线」。這表示窗簾雙側邊自動縫製加上裁剪、堆放的連線設備已有商品在賣，和交接包 4.3 列為自製核心的「雙側邊橫向卷邊」、8.2 說「家紡窗簾整線未解決」有重疊。它能不能處理遮光塗層打孔簾、能不能包住端口、節拍多少、價格多少，搜尋摘要都沒寫，需要實地驗證。資料年份不明，搜狐報導約 2021 年。
 - **重要性**：critical｜**交接包節**：4.3｜**來源題組**：中國窗簾/家紡設備商｜**查核者**：V2
 - **查核說明**：查詢「中缝利华 窗帘智能制造柔性生产线 双侧边自动缝制 整烫 裁剪 堆放」的摘要確認了三件事：利華有窗簾智能製造柔性生產線，DF-21D 系列在 2021 秋冬家紡展發布，構成包含自動裁布和窗簾雙針縫紉機。搜狐和中家紡 hometex 是同一篇企業稿的轉載，不能算兩個彼此獨立的來源。「雙側邊＋整燙＋裁剪＋堆放」的完整系統名稱，我的搜尋摘要沒有再次出現。我另外用「利华 Iamork DF-21D 家纺自动化生产线 窗帘」查了一次，沒有任何相關結果，所以工序細節和價格都補不上。核心（利華宣傳窗簾／家紡自動化生產線）成立，但具體系統內容只有單一二手來源，因此判部分驗證。
+- **主控二次查核**：主控二次查核（2026-09-28）：以「利华 Iamork DF-21D 家纺自动化生产线 窗帘」查詢，搜尋結果未出現任何 DF-21D 相關頁面，無法再取得構成、節拍、價格；維持部分驗證，需實地看機。
 - **來源**：
   - [自动化家纺设备、家纺加工设备、电脑控制家纺加工设备、自动化家纺加工设备](https://www.tiger1618.com/product/detail/1852196/zidonghuajiafan)
   - [【变革“零距离”】利华家纺自动化：助力中国家纺窗帘企业打造工业4.0_设备](https://www.sohu.com/a/492609967_121123876)
@@ -3136,3 +3137,23 @@ id 前綴：T＝人才、E＝工程、M＝市場、C＝競爭、D＝是否已有
 - **來源**：
   - [CN101851849A - 自动验布机 - Google Patents](https://patents.google.com/patent/CN101851849A/de)
   - [CN116485795A - 一种卷料涂布生产线瑕疵检测方法及系统 - Google Patents](https://patents.google.com/patent/CN116485795A/zh)
+
+### ✅ [ML-3] 已驗證
+
+- **查核後論點**：德國 TEXPA 官網有現成的「橫向卷邊機」（CROSS HEMMING MACHINE FOR TERRY FABRIC）與「縱向卷邊機」（桌巾、毛巾用），其產線功能包含多道縱切、光學裁切頭控制、橫切/橫向卷邊、標籤投放、鏈式/覆蓋/鎖式線跡與自動成角；二手市場也有 Texpa QRSN（2005 年，縱向＋橫向卷邊）在售。也就是「定長橫切→兩端橫向卷邊」這個動作在毛巾/桌巾整線上已商品化約 20 年；交接包 4.3 把『側邊橫向卷邊』列為自製核心，差異只剩窗簾特有條件（2.8 m 幅寬、遮光塗層布、包住上下擺端口），應先向 Texpa 詢問改造可行性再決定自研。
+- **重要性**：critical｜**交接包節**：4.3｜**來源題組**：主控補查｜**查核者**：主控
+- **查核說明**：主控（總協調）以獨立搜尋確認
+- **來源**：
+  - [CROSS HEMMING MACHINE FOR TERRY FABRIC - TEXPA](https://texpa.de/produkt/cross-hemming-machine-for-terry-fabric/)
+  - [LENGTH HEMMING MACHINE FOR TABLE LINEN - TEXPA](https://texpa.de/produkt/length-hemming-machine-for-table-linen/)
+  - [Texpa, QRSN, 2005, Longitudinal and Cross Hemming — American Plant & Equipment](https://americanplantandequipment.com/machine/L-6890)
+
+### 🟡 [ML-4] 部分驗證
+
+- **查核後論點**：美國 Stimpson 的 83、83LT、2R83 為自動送環（automatic feed）的工業布料雞眼機，官方稱可在多數輕至中厚布料上做單顆或多顆高速雞眼安裝；靖城（qcmachinery）、Rivetmach 也銷售窗簾自動打孔上環機。本次搜尋摘要中的「自動孔距調整」說法無法確認出自哪家；仍未發現明確宣稱『布片自動送進＋伺服分度＋多頭同時打孔上環』的窗簾整機（未發現≠不存在）。
+- **重要性**：high｜**交接包節**：4.3 / 5.1｜**來源題組**：主控補查｜**查核者**：主控
+- **查核說明**：主控（總協調）以獨立搜尋確認
+- **來源**：
+  - [Automatic Eyelet Attaching Machines For Industrial Fabrics | Stimpson](https://stimpson.com/eyelets/eyelets-attaching-machines/)
+  - [Fully Automatic Curtain Eyelet Setting Machine | Rivetmach Machinery](https://rivetmach.com/products/fully-automatic-curtain-eyelet-setting-machine/)
+  - [Automatic Eyelet Punching Machine - Jingcheng](https://qcmachinery.com/automatic-eyelet-punching-machine/)
