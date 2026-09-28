@@ -44,6 +44,20 @@ const DOCS = [
     ],
   },
   {
+    file: '05_紅隊_嘗試推翻我們的想法.pdf',
+    title: '窗簾自動化事業<br>紅隊報告：嘗試推翻我們的想法',
+    plainTitle: '紅隊報告：嘗試推翻我們的想法',
+    toc: true,
+    parts: [
+      [`${R}/06-red-team.md`, '紅隊整合報告（判決、反駁、定案衝突、90 天驗證）'],
+      [`${R}/redteam/buyer.md`, '附錄 A　買方紅隊全文', null, '附錄 A　買方紅隊'],
+      [`${R}/redteam/investor.md`, '附錄 B　投資人紅隊全文', null, '附錄 B　投資人紅隊'],
+      [`${R}/redteam/engineer.md`, '附錄 C　工程紅隊全文', null, '附錄 C　工程紅隊'],
+      [`${R}/redteam/calc-output.md`, '附錄 D　計算輸出（redteam_calc.py）', '# 附錄 D　計算輸出\n\n> 以下為 `redteam_calc.py` 的完整輸出，只用交接包數字與已查核論點；改參數可重算。\n\n'],
+      [`${R}/redteam/verify_new.md`, '附錄 E　新搜尋事實的獨立查核表', null, '附錄 E　新搜尋事實的獨立查核表'],
+    ],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
@@ -127,8 +141,11 @@ function build(doc) {
   if (doc.toc) {
     body += `<section class="toc"><h1>目錄</h1><ol>${doc.parts.map(p => `<li>${p[1]}</li>`).join('')}</ol></section>`
   }
-  for (const [file, , prefix] of doc.parts) {
-    const md = (prefix || '') + fs.readFileSync(file, 'utf8')
+  for (const [file, , prefix, h1] of doc.parts) {
+    let md = fs.readFileSync(file, 'utf8')
+    // 附錄改用統一的「附錄 X」標題
+    if (h1) md = md.replace(/^# .*$/m, `# ${h1}`)
+    md = (prefix || '') + md
     body += `<section class="chapter">${marked.parse(prep(md), { gfm: true, breaks: false })}</section>`
   }
   return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>${doc.plainTitle}</title><style>${CSS}</style></head><body>${body}</body></html>`

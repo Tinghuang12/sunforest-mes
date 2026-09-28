@@ -18,6 +18,8 @@
 | 4 | [03-market.md](03-market.md) | 市場數字查核、由下而上 SAM、三地人工成本與回收期 |
 | 5 | [02-engineering.md](02-engineering.md) | 檢驗單元、線跡與檢針、走布段、標準與標籤法規 |
 | 6 | [01-talent.md](01-talent.md) | 人才地圖、薪資、兩岸法規紅線 |
+| 7 | [06-red-team.md](06-red-team.md) | 紅隊：買方、投資人、工程三方嘗試推翻我們的想法；判決表、【定案】衝突、90 天驗證清單 |
+| 紅隊附錄 | [redteam/](redteam/) | 三份紅隊全文、新搜尋事實獨立查核表、計算腳本與輸出（`redteam_calc.py`） |
 | 參考 | [appendix-verification-log.md](appendix-verification-log.md) | 282 條論點的查核狀態、說明與來源連結 |
 
 ## 查核方式（簡述）
