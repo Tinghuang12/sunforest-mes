@@ -58,6 +58,15 @@ const DOCS = [
     ],
   },
   {
+    file: '06_Texpa查核_是不是虛的.pdf',
+    title: '補充查核<br>Texpa 的自動化產線是不是虛的？',
+    plainTitle: '補充查核：Texpa 是不是虛的',
+    parts: [
+      [`${R}/07-texpa-check.md`, null],
+      [`${R}/texpa/verify_texpa.md`, null, null, '附錄　Texpa 獨立查核表（T1–T11）'],
+    ],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
