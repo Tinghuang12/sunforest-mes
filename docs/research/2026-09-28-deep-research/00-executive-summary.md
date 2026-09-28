@@ -251,6 +251,7 @@
 | [03-market.md](03-market.md) | 市場數字查核、由下而上 SAM、三地人工成本與回收期、日本市場 |
 | [04-competitors.md](04-competitors.md) | 競爭對手地圖（中、歐、日、相鄰產業、潛在進入者） |
 | [05-already-built.md](05-already-built.md) | 逐模組判定、是否重造輪子、先驗證清單 |
+| [08-recruiting-playbook.md](08-recruiting-playbook.md) | 招募作戰表：先招哪 6 個位置、找誰、去哪找、怎麼招 |
 | [07-texpa-check.md](07-texpa-check.md) | 補充查核：Texpa 是不是虛的；宏華數科收購與國產窗簾機 |
 | [06-red-team.md](06-red-team.md) | 紅隊：買方、投資人、工程三方嘗試推翻；判決表、【定案】衝突、90 天驗證清單 |
 | [appendix-verification-log.md](appendix-verification-log.md) | 282 條論點的查核狀態、說明與來源連結 |

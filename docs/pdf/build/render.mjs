@@ -68,6 +68,15 @@ const DOCS = [
     ],
   },
   {
+    file: '07_招募作戰表.pdf',
+    title: '招募作戰表<br>招誰、去哪找、怎麼招',
+    plainTitle: '招募作戰表',
+    parts: [
+      [`${R}/08-recruiting-playbook.md`, null],
+      [`${R}/talent/verify_channels.md`, null, null, '附錄　招募管道獨立查核表（P1–P14）'],
+    ],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
@@ -127,6 +136,8 @@ function prep(md) {
   md = md.replace(/\[([^\]]+)\]\((?!https?:)[^)]+\)/g, '$1')
   // claim id 做成小標籤
   md = md.replace(ID_RE, '<span class="cid">$1</span>')
+  // 中文標點緊貼 ** 時 CommonMark 不會轉成粗體，直接改成 <strong>
+  md = md.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
   return md
 }
 
