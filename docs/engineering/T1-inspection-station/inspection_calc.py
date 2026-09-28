@@ -11,6 +11,8 @@ import argparse
 import math
 import random
 import statistics
+import csv
+import os
 
 PARAMS = {
     # 成品簾尺寸（交接包 T1 輸入）
@@ -23,7 +25,7 @@ PARAMS = {
     "overlap": 0.05,               # 相鄰相機視野重疊 5%
     "working_distance_mm": 1500,
     # 感測器（研究 E1-2、E1-3：IMX541 全域快門）
-    "sensor_px": (4512, 4512),
+    "sensor_px": (4504, 4504),      # 多數 IMX541 相機規格頁的有效解析度（Basler、TIS、FLIR）
     "pixel_um": 2.74,
     # 模糊準則（研究 E1-4：曝光期間移動宜 ≤0.5 px）
     "blur_px_max": 0.5,
@@ -181,6 +183,31 @@ def speed_sensitivity(p, res=0.121, h=2.7):
     return "\n".join(out)
 
 
+def lens_table(p, sw_mm, fov=545.0):
+    """4 台沿簾寬、單機視野約 545 mm 時，不同焦距的工作距離與量測對布面高低差的容許值。"""
+    m = sw_mm / fov
+    out = ["| 鏡頭焦距 mm | 工作距離 m | 視野邊緣離光軸 mm | 布面高低差容許值 mm（每邊誤差 ≤1 mm） |",
+           "|---:|---:|---:|---:|"]
+    for f in (25, 35):
+        wd = f * (1 + m) / m
+        x = fov / 2
+        dz = 1.0 * wd / x
+        out.append(f"| {f} | {wd/1000:.2f} | {x:.0f} | {dz:.1f} |")
+    return "\n".join(out)
+
+
+def bom_table(path):
+    rows = list(csv.DictReader(open(path, encoding="utf-8")))
+    out = ["| 分組 | 項目 | 數量 | 單價 萬元（低–高） | 小計 萬元（低–高） |", "|---|---|---:|---:|---:|"]
+    lo = hi = 0.0
+    for r in rows:
+        q = int(r["qty"]); a = float(r["unit_low_wan"]); b = float(r["unit_high_wan"])
+        lo += q * a; hi += q * b
+        out.append(f"| {r['group']} | {r['item']} | {q} | {a:g}–{b:g} | {q*a:.2f}–{q*b:.2f} |")
+    out.append(f"| **合計** | 硬體（不含工程人力、整合、標註人力） | | | **{lo:.2f}–{hi:.2f}** |")
+    return "\n".join(out), lo, hi
+
+
 def zero_fail_n(p_max, conf=0.95):
     return math.ceil(math.log(1 - conf) / math.log(1 - p_max))
 
@@ -233,6 +260,8 @@ def main():
     print(t_opt, "\n")
     print("## A2. 給定台數可達到的解析度\n")
     print(cameras_to_resolution_table(p, sw), "\n")
+    print("## A3. 鏡頭焦距、工作距離與量測容許的布面高低差\n")
+    print(lens_table(p, sw), "\n")
     print("## B. 最小缺陷占幾個像素\n")
     print(defect_pixels_table(), "\n")
     print("## C. 景深\n")
@@ -248,7 +277,12 @@ def main():
     print("## G. AI 驗收所需樣本量（二項分布，95% 單尾信賴）\n")
     print(sample_size_table(), "\n")
     print("## H. 回收期（檢驗單元省 6.7 人/千片日；售價 60 萬與交接包上限 90 萬）\n")
-    print(payback_table())
+    print(payback_table(), "\n")
+    bom_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bom.csv")
+    if os.path.exists(bom_path):
+        t, lo, hi = bom_table(bom_path)
+        print("## I. BOM 合計（bom.csv；大多數單價為【估算】，須詢價）\n")
+        print(t)
 
 
 if __name__ == "__main__":
