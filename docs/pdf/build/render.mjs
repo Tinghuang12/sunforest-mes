@@ -92,6 +92,7 @@ const DOCS = [
       [`${R}/redteam2/verify_policy.md`, '附錄 F　法規組新事實查核表', null, '附錄 F　法規組新事實查核表（Q-P1–Q-P17）'],
       [`${R}/redteam2/verify_market.md`, '附錄 G　競爭與需求組新事實查核表', null, '附錄 G　競爭與需求組新事實查核表（Q-C、Q-D）'],
       [`${R}/redteam2/verify_cfo.md`, '附錄 H　財務長組新事實查核表', null, '附錄 H　財務長組新事實查核表（Q-F1–Q-F9）'],
+      [`${R}/redteam2/verify_fob.md`, '附錄 I　每片 FOB 補查', null, '附錄 I　每片 FOB 補查（Q-FOB）'],
     ],
   },
   {

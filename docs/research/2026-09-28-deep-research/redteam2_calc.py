@@ -36,7 +36,14 @@ CASH24_B_NTD = (8107, 15052)   # 財務長組：照交接包串整線，24 個�
 TRANCHE1_NTD = (1094, 1914)    # 財務長組：精簡版第 1 段，9 個月
 
 # ── 對外賣 AI 檢驗層的市場（研究第 3 章分析一；第一輪紅隊）──────────────
-KPCS_UNITS = (1267, 3378)      # 出口成品簾「千片日單位」[M2-1]
+EXPORT_USD = 30.4e8            # 2024 年中國窗簾出口 30.4 億美元（家紡協會口徑）🟡[M2-1][V5-N7]
+FOB_USD = (3, 6)               # 每片 FOB 美元。〔查核修正〕原用 3–8（沒有來源）；Q-FOB 查核：
+                               # 中國 2024 年 HS 630392 出口 5.92 美元/kg × 一片 0.79–0.90 kg ≈ 4.7–5.3 美元，
+                               # 上限 8 撐不住，改為 3–6（redteam2/verify_fob.md）
+WORK_DAYS = 300                # 【假設】年工作日，沿用第 3 章
+KPCS_UNITS = (EXPORT_USD / FOB_USD[1] / WORK_DAYS / 1000,   # 出口成品簾「千片日單位」
+              EXPORT_USD / FOB_USD[0] / WORK_DAYS / 1000)
+BEDDING_USD = 146.9e8          # 2024 年床品出口 146.9 億美元 🟡[V5-N7]；只用於敏感度示意
 ADOPT_PER_YEAR = 0.03          # 交接包自己的 30% ÷ 10 年
 STATION_CAP = 2990             # 雙夾桿單台片/日（T1 5.2）
 STATION_PRICE = (40, 60)       # 買方紅隊：AI 層按台 40 萬開價、上限約 60 萬
@@ -95,6 +102,31 @@ def external_market():
     return "\n".join(rows), st_total, gp
 
 
+def market_gp(export=EXPORT_USD, fob=FOB_USD, adopt=ADOPT_PER_YEAR, price=STATION_PRICE, gm=GM):
+    """全市場每年 AI 層毛利（低組合、高組合）：出口額 ÷ FOB ÷ 300 日 ÷ 1,000 × 採用率 × 1,000 ÷ 2,990 × 每台價 × 毛利。"""
+    lo = export / fob[1] / WORK_DAYS / 1000 * adopt * 1000 / STATION_CAP * price[0] * gm[0]
+    hi = export / fob[0] / WORK_DAYS / 1000 * adopt * 1000 / STATION_CAP * price[1] * gm[1]
+    return lo, hi
+
+
+def sensitivity():
+    a24 = ntd2rmb(CASH24_A_NTD)
+    cases = [
+        ("基準（FOB 3–6 美元、年採用 3%、每台 40–60 萬、毛利 35–40%）", market_gp()),
+        ("原本的 FOB 3–8 美元（查核前）", market_gp(fob=(3, 8))),
+        ("FOB 中心值 4.5–5 美元", market_gp(fob=(4.5, 5))),
+        ("年採用率加倍到 6%", market_gp(adopt=0.06)),
+        ("按交接包原價：每千片日 90 萬（含燈箱台、檢針、剪線）", None),
+        ("範圍擴大：床品出口也適用（純示意；床品每片 FOB 沒查）", market_gp(export=EXPORT_USD + BEDDING_USD)),
+    ]
+    rows = ["| 情境 | 全市場每年毛利 萬元 | 抵 A 路 24 個月現金要幾年 |", "|---|---:|---:|"]
+    for name, v in cases:
+        if v is None:
+            v = (KPCS_UNITS[0] * ADOPT_PER_YEAR * 90 * GM[0], KPCS_UNITS[1] * ADOPT_PER_YEAR * 90 * GM[1])
+        rows.append(f"| {name} | {rng(*v, 0)} | {rng(a24[0] / v[1], a24[1] / v[0])} |")
+    return "\n".join(rows)
+
+
 def severance():
     rows = ["| 被替代員工平均年資 | 每人經濟補償 N 萬元 | 回收期：N | 回收期：違法解除 2N |", "|---:|---:|---:|---:|"]
     m = (WAGE / SOCIAL[1] / 12, WAGE / SOCIAL[0] / 12)   # 萬元/月，全成本扣社保
@@ -134,10 +166,13 @@ def main():
     print("## 3. 對外賣檢驗單元：每年能賣多少（中國出口成品簾口徑）\n")
     print(t, "\n")
     a24 = ntd2rmb(CASH24_A_NTD)
+    print(f"- 千片日單位＝30.4 億美元 ÷ FOB {FOB_USD[0]}–{FOB_USD[1]} 美元/片 ÷ {WORK_DAYS} 日 ÷ 1,000 ＝ {rng(*KPCS_UNITS, 0)} 個【估算】。")
     print(f"- 出口成品簾全部裝滿，約需雙夾桿檢驗台 {rng(*st_total, 0)} 台【估算：千片日單位 × 1,000 ÷ 2,990】。")
     print(f"- 紅隊版定價下，**全市場**每年毛利 {rng(*gp, 0)} 萬。就算全部拿下，要 {rng(a24[0] / gp[1], a24[1] / gp[0])} 年"
           f"才抵得過 A 路 24 個月的現金 {rng(*a24, 0)} 萬【估算】。")
-    print("- 這只算中國出口成品簾，年採用率 3% 沿用交接包；若檢驗台也能用在國內簾、床單、被套等平幅家紡，市場會放大，但目前沒有算式。\n")
+    print("- 這只算中國出口成品簾，年採用率 3% 沿用交接包；若檢驗台也能用在國內簾、床單、被套等平幅家紡，市場會放大。\n")
+    print("### 敏感度：哪個假設一改，結論就會變\n")
+    print(sensitivity(), "\n")
 
     t, m = severance()
     print("## 4. 客戶要裁人時，遣散把回收期拉長多少（法規組 P2）\n")
