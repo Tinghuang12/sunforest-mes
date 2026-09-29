@@ -77,6 +77,24 @@ const DOCS = [
     ],
   },
   {
+    file: '08_紅隊第二輪_狀況分析.pdf',
+    title: '窗簾自動化事業<br>紅隊第二輪：更深、更廣的攻擊與狀況分析',
+    plainTitle: '紅隊第二輪：狀況分析',
+    date: '2026 年 9 月 29 日',
+    toc: true,
+    parts: [
+      [`${R}/09-red-team-2.md`, '紅隊第二輪整合報告（狀況圖、四種做法、判決、定案衝突、90 天清單）'],
+      [`${R}/redteam2/competitor.md`, '附錄 A　競爭對手兵推全文', null, '附錄 A　競爭對手兵推'],
+      [`${R}/redteam2/cfo.md`, '附錄 B　集團財務長＋家族股東全文', null, '附錄 B　集團財務長＋家族股東'],
+      [`${R}/redteam2/policy.md`, '附錄 C　法規、政策與地緣全文', null, '附錄 C　法規、政策與地緣'],
+      [`${R}/redteam2/demand.md`, '附錄 D　需求與產品趨勢全文', null, '附錄 D　需求與產品趨勢'],
+      [`${R}/redteam2/calc-output.md`, '附錄 E　做法比較試算輸出（redteam2_calc.py）', null, '附錄 E　做法比較試算輸出'],
+      [`${R}/redteam2/verify_policy.md`, '附錄 F　法規組新事實查核表', null, '附錄 F　法規組新事實查核表（Q-P1–Q-P17）'],
+      [`${R}/redteam2/verify_market.md`, '附錄 G　競爭與需求組新事實查核表', null, '附錄 G　競爭與需求組新事實查核表（Q-C、Q-D）'],
+      [`${R}/redteam2/verify_cfo.md`, '附錄 H　財務長組新事實查核表', null, '附錄 H　財務長組新事實查核表（Q-F1–Q-F9）'],
+    ],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
@@ -100,6 +118,7 @@ ul, ol { margin: 4px 0 8px; padding-left: 20px; }
 li { margin: 2px 0; }
 li > ul, li > ol { margin: 2px 0; }
 strong { color: #0b2540; }
+th strong { color: #fff; }
 blockquote { margin: 10px 0 14px; padding: 10px 14px; background: #eef5fb; border-left: 5px solid #2f7fb8; border-radius: 4px; }
 blockquote p { margin: 4px 0; }
 table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; font-size: 8.6pt; line-height: 1.5; page-break-inside: auto; }
@@ -146,7 +165,7 @@ function cover(doc) {
   <div class="band">
     <div class="org">晨森 NEW TECH ・ 窗簾自動化事業</div>
     <div class="title">${doc.title}</div>
-    <div class="meta">呈：黃悟庭 社長<br>日期：2026 年 9 月 28 日<br>依據：2026-09-28 研究交接包</div>
+    <div class="meta">呈：黃悟庭 社長<br>日期：${doc.date || '2026 年 9 月 28 日'}<br>依據：2026-09-28 研究交接包</div>
   </div>
   <div class="legend">
     <b>查核狀態圖例</b>　✅ 已驗證　🟡 部分驗證（使用查核後修正版）　⚪ 無法驗證（不作決策依據）　❌ 已推翻<br>
@@ -175,7 +194,9 @@ function build(doc) {
 fs.mkdirSync(OUT, { recursive: true })
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' })
 const page = await browser.newPage()
-for (const doc of DOCS) {
+// 只重建指定的檔案：node render.mjs 01 08（比對檔名開頭）；不帶參數就全部重建
+const ONLY = process.argv.slice(2)
+for (const doc of DOCS.filter(d => !ONLY.length || ONLY.some(k => d.file.startsWith(k)))) {
   const html = build(doc)
   const htmlPath = path.join(HERE, doc.file.replace('.pdf', '.html'))
   fs.writeFileSync(htmlPath, html)

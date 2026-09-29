@@ -21,7 +21,9 @@
 | 7 | [06-red-team.md](06-red-team.md) | 紅隊：買方、投資人、工程三方嘗試推翻我們的想法；判決表、【定案】衝突、90 天驗證清單 |
 | 8 | [07-texpa-check.md](07-texpa-check.md) | 補充查核：Texpa 是不是虛的；宏華數科收購、國產窗簾機（全表在 [texpa/](texpa/)） |
 | 9 | [08-recruiting-playbook.md](08-recruiting-playbook.md) | 招募作戰表：先招哪 6 個位置、找誰、去哪找、怎麼招、紅線、90 天時程（查核表在 [talent/](talent/)） |
+| 10 | [09-red-team-2.md](09-red-team-2.md) | 紅隊第二輪：競爭對手兵推、集團財務長與股東、法規地緣、需求趨勢；狀況圖、四種做法比較、【定案】衝突、90 天新增清單 |
 | 紅隊附錄 | [redteam/](redteam/) | 三份紅隊全文、新搜尋事實獨立查核表、計算腳本與輸出（`redteam_calc.py`） |
+| 紅隊第二輪附錄 | [redteam2/](redteam2/) | 四份紅隊全文、三份新事實獨立查核表、財務長組算式（`cfo_calc.py`）、做法比較試算輸出（`redteam2_calc.py`） |
 | 參考 | [appendix-verification-log.md](appendix-verification-log.md) | 282 條論點的查核狀態、說明與來源連結 |
 
 ## 查核方式（簡述）
