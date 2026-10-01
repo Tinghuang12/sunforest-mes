@@ -115,6 +115,7 @@ const DOCS = [
     parts: [
       [`${PLAN}/02-ipo-roadmap.md`, null],
       [`${PLAN}/verify_listing_rules.md`, null],
+      [`${PLAN}/funding_calc_output.md`, null, null, '附錄二　每一期要到位的資金：試算輸出'],
     ],
   },
   {
@@ -167,10 +168,12 @@ table.gantt td.d { background: #2f7fb8 !important; color: #fff; }
 table.gantt td.k { background: #c0392b !important; color: #fff; font-weight: 700; }
 table.gantt td.p { background: #e3e8ee !important; color: #6e7781; }
 table.gantt.wide th:first-child, table.gantt.wide td:first-child { width: 22%; }
+table.gantt td.m { background: #fff3d1 !important; font-size: 6.6pt; color: #5a4300; line-height: 1.25; }
+table.gantt tr.mh td { background: #f1e2ae !important; font-weight: 700; text-align: left; font-size: 7.4pt; color: #4a3800; padding-left: 5px; }
 .pb { break-before: page; height: 0; }
 p.legend { font-size: 8pt; color: #444; margin: -6px 0 10px; }
 .lg { display: inline-block; width: 12px; height: 9px; border-radius: 2px; margin: 0 3px 0 10px; vertical-align: -1px; }
-.lg.w { background: #a9cbe8; } .lg.d { background: #2f7fb8; } .lg.k { background: #c0392b; } .lg.p { background: #e3e8ee; border: 1px solid #c9d3dd; }
+.lg.w { background: #a9cbe8; } .lg.d { background: #2f7fb8; } .lg.k { background: #c0392b; } .lg.p { background: #e3e8ee; border: 1px solid #c9d3dd; } .lg.m { background: #fff3d1; border: 1px solid #e0c97a; }
 /* 封面 */
 .cover { height: 250mm; display: flex; flex-direction: column; break-after: page; }
 .cover .band { background: #0b3d63; color: #fff; padding: 34mm 14mm 16mm; border-radius: 6px; }
