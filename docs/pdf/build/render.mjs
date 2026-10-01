@@ -102,6 +102,7 @@ const DOCS = [
     plainTitle: 'New Tech 第一年活動計劃表',
     date: '2026 年 10 月 1 日',
     basis: '交接包【定案】＋研究第 1–9 章',
+    idNote: '<b>引用</b>　「第 N 章」指五面向研究與兩輪紅隊報告（PDF 02、05、08）；「財務長組」指 PDF 08 附錄 B。',
     parts: [[`${PLAN}/01-newtech-year1-plan.md`, null]],
   },
   {
@@ -110,7 +111,11 @@ const DOCS = [
     plainTitle: '集團上市計劃',
     date: '2026 年 10 月 1 日',
     basis: '交接包【定案】＋研究第 1–9 章＋上櫃規定查核',
-    parts: [[`${PLAN}/02-ipo-roadmap.md`, null]],
+    idNote: '<b>方括號小標籤</b>（例如 <span class="cid">IP-4</span>）是上櫃規定的查核編號，見本文件附錄；「第 N 章」指研究與紅隊報告（PDF 02、05、08）。',
+    parts: [
+      [`${PLAN}/02-ipo-roadmap.md`, null],
+      [`${PLAN}/verify_listing_rules.md`, null],
+    ],
   },
   {
     file: '04_研究查核附錄_282條論點.pdf',
@@ -201,7 +206,7 @@ function cover(doc) {
   <div class="legend">
     <b>查核狀態圖例</b>　✅ 已驗證　🟡 部分驗證（使用查核後修正版）　⚪ 無法驗證（不作決策依據）　❌ 已推翻<br>
     <b>標記</b>　【估算】自行計算，附算式　【推論】工程或商業判斷　【假設】待實測或詢價更新<br>
-    <b>方括號小標籤</b>（例如 <span class="cid">C1-3</span>）是論點編號，可在「研究查核附錄」查到來源與查核說明。
+    ${doc.idNote || '<b>方括號小標籤</b>（例如 <span class="cid">C1-3</span>）是論點編號，可在「研究查核附錄」查到來源與查核說明。'}
     <div class="note">限制：本研究環境無法直接開啟網頁，所有查核依據搜尋結果摘要；放入對外文件的重要數字，請再人工打開原文核對。</div>
   </div>
 </section>`
