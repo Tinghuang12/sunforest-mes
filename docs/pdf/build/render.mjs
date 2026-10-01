@@ -102,7 +102,7 @@ const DOCS = [
     plainTitle: 'New Tech 第一年活動計劃表',
     date: '2026 年 10 月 1 日',
     basis: '交接包【定案】＋研究第 1–9 章',
-    idNote: '<b>引用</b>　「第 N 章」指五面向研究與兩輪紅隊報告（PDF 02、05、08）；「財務長組」指 PDF 08 附錄 B。',
+    idNote: '<b>引用</b>　「第 N 章」指五面向研究與兩輪紅隊報告（PDF 02、05、08）；「財務長組」指 PDF 08 附錄 B；「反向驗證」指 PDF 11。',
     parts: [[`${PLAN}/01-newtech-year1-plan.md`, null]],
   },
   {
@@ -111,11 +111,25 @@ const DOCS = [
     plainTitle: '集團上市計劃',
     date: '2026 年 10 月 1 日',
     basis: '交接包【定案】＋研究第 1–9 章＋上櫃規定查核',
-    idNote: '<b>方括號小標籤</b>（例如 <span class="cid">IP-4</span>）是上櫃規定的查核編號，見本文件附錄；「第 N 章」指研究與紅隊報告（PDF 02、05、08）。',
+    idNote: '<b>方括號小標籤</b>是查核編號：IP-x（例如 <span class="cid">IP-4</span>）見附錄一，IL-x 見附錄三；「第 N 章」指研究與紅隊報告（PDF 02、05、08）；「反向驗證」指 PDF 11。',
     parts: [
       [`${PLAN}/02-ipo-roadmap.md`, null],
       [`${PLAN}/verify_listing_rules.md`, null],
       [`${PLAN}/funding_calc_output.md`, null, null, '附錄二　每一期要到位的資金：試算輸出'],
+      [`${PLAN}/verify_ipo_leadtimes.md`, null, null, '附錄三　上市前置時間的獨立查核（IL-1 至 IL-8）'],
+    ],
+  },
+  {
+    file: '11_反向驗證_計劃可行性.pdf',
+    title: '反向驗證<br><span style="font-size:15pt;font-weight:500">第一年活動計劃表與集團上市計劃<br>做不做得到</span>',
+    plainTitle: '反向驗證',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋PDF 09、10＋上市前置時間查核',
+    idNote: '<b>方括號小標籤</b>（例如 <span class="cid">IL-7</span>）是查核編號：IL-x 見本文件附錄二，IP-x 見 PDF 10 附錄一。「第 N 節」指本文件。',
+    parts: [
+      [`${PLAN}/03-backward-check.md`, null],
+      [`${PLAN}/backward_check_output.md`, null, null, '附錄一　反向驗證：試算輸出'],
+      [`${PLAN}/verify_ipo_leadtimes.md`, null, null, '附錄二　上市前置時間的獨立查核（IL-1 至 IL-8）'],
     ],
   },
   {
