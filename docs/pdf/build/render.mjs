@@ -8,6 +8,7 @@ const HERE = path.dirname(new URL(import.meta.url).pathname)
 const REPO = path.resolve(HERE, '../../..')
 const R = `${REPO}/docs/research/2026-09-28-deep-research`
 const T1 = `${REPO}/docs/engineering/T1-inspection-station`
+const PLAN = `${REPO}/docs/plan`
 const OUT = `${REPO}/docs/pdf`
 const FONT = `file://${HERE}/node_modules/@fontsource/noto-sans-tc`
 
@@ -96,6 +97,42 @@ const DOCS = [
     ],
   },
   {
+    file: '09_NewTech_第一年活動計劃表.pdf',
+    title: 'New Tech<br>第一年活動計劃表<br><span style="font-size:15pt;font-weight:500">2026 年 10 月至 2027 年 9 月</span>',
+    plainTitle: 'New Tech 第一年活動計劃表',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋研究第 1–9 章',
+    idNote: '<b>引用</b>　「第 N 章」指五面向研究與兩輪紅隊報告（PDF 02、05、08）；「財務長組」指 PDF 08 附錄 B；「反向驗證」指 PDF 11。',
+    parts: [[`${PLAN}/01-newtech-year1-plan.md`, null]],
+  },
+  {
+    file: '10_上市計劃_2026至2031.pdf',
+    title: '集團上市計劃<br><span style="font-size:15pt;font-weight:500">2026 年第 4 季至 2031 年上櫃</span>',
+    plainTitle: '集團上市計劃',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋研究第 1–9 章＋上櫃規定查核',
+    idNote: '<b>方括號小標籤</b>是查核編號：IP-x（例如 <span class="cid">IP-4</span>）見附錄一，IL-x 見附錄三；「第 N 章」指研究與紅隊報告（PDF 02、05、08）；「反向驗證」指 PDF 11。',
+    parts: [
+      [`${PLAN}/02-ipo-roadmap.md`, null],
+      [`${PLAN}/verify_listing_rules.md`, null],
+      [`${PLAN}/funding_calc_output.md`, null, null, '附錄二　每一期要到位的資金：試算輸出'],
+      [`${PLAN}/verify_ipo_leadtimes.md`, null, null, '附錄三　上市前置時間的獨立查核（IL-1 至 IL-8）'],
+    ],
+  },
+  {
+    file: '11_反向驗證_計劃可行性.pdf',
+    title: '反向驗證<br><span style="font-size:15pt;font-weight:500">第一年活動計劃表與集團上市計劃<br>做不做得到</span>',
+    plainTitle: '反向驗證',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋PDF 09、10＋上市前置時間查核',
+    idNote: '<b>方括號小標籤</b>（例如 <span class="cid">IL-7</span>）是查核編號：IL-x 見本文件附錄二，IP-x 見 PDF 10 附錄一。「第 N 節」指本文件。',
+    parts: [
+      [`${PLAN}/03-backward-check.md`, null],
+      [`${PLAN}/backward_check_output.md`, null, null, '附錄一　反向驗證：試算輸出'],
+      [`${PLAN}/verify_ipo_leadtimes.md`, null, null, '附錄二　上市前置時間的獨立查核（IL-1 至 IL-8）'],
+    ],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
@@ -136,6 +173,21 @@ a { color: #1f5f99; text-decoration: none; word-break: break-all; }
 .cid { font-size: 7.2pt; color: #6e7781; background: #eef1f4; border-radius: 3px; padding: 0 3px; margin: 0 1px; white-space: nowrap; vertical-align: 1px; }
 .chapter { break-before: page; }
 .chapter:first-of-type { break-before: auto; }
+/* 甘特圖 */
+table.gantt { table-layout: fixed; font-size: 7.4pt; line-height: 1.3; }
+table.gantt th, table.gantt td { text-align: center; padding: 4px 1px; }
+table.gantt th:first-child, table.gantt td:first-child { text-align: left; width: 31%; padding-left: 5px; font-size: 7.8pt; }
+table.gantt td.w { background: #a9cbe8 !important; }
+table.gantt td.d { background: #2f7fb8 !important; color: #fff; }
+table.gantt td.k { background: #c0392b !important; color: #fff; font-weight: 700; }
+table.gantt td.p { background: #e3e8ee !important; color: #6e7781; }
+table.gantt.wide th:first-child, table.gantt.wide td:first-child { width: 22%; }
+table.gantt td.m { background: #fff3d1 !important; font-size: 6.6pt; color: #5a4300; line-height: 1.25; }
+table.gantt tr.mh td { background: #f1e2ae !important; font-weight: 700; text-align: left; font-size: 7.4pt; color: #4a3800; padding-left: 5px; }
+.pb { break-before: page; height: 0; }
+p.legend { font-size: 8pt; color: #444; margin: -6px 0 10px; }
+.lg { display: inline-block; width: 12px; height: 9px; border-radius: 2px; margin: 0 3px 0 10px; vertical-align: -1px; }
+.lg.w { background: #a9cbe8; } .lg.d { background: #2f7fb8; } .lg.k { background: #c0392b; } .lg.p { background: #e3e8ee; border: 1px solid #c9d3dd; } .lg.m { background: #fff3d1; border: 1px solid #e0c97a; }
 /* 封面 */
 .cover { height: 250mm; display: flex; flex-direction: column; break-after: page; }
 .cover .band { background: #0b3d63; color: #fff; padding: 34mm 14mm 16mm; border-radius: 6px; }
@@ -166,12 +218,12 @@ function cover(doc) {
   <div class="band">
     <div class="org">晨森 NEW TECH ・ 窗簾自動化事業</div>
     <div class="title">${doc.title}</div>
-    <div class="meta">呈：黃悟庭 社長<br>日期：${doc.date || '2026 年 9 月 28 日'}<br>依據：2026-09-28 研究交接包</div>
+    <div class="meta">呈：黃悟庭 社長<br>日期：${doc.date || '2026 年 9 月 28 日'}<br>依據：${doc.basis || '2026-09-28 研究交接包'}</div>
   </div>
   <div class="legend">
     <b>查核狀態圖例</b>　✅ 已驗證　🟡 部分驗證（使用查核後修正版）　⚪ 無法驗證（不作決策依據）　❌ 已推翻<br>
     <b>標記</b>　【估算】自行計算，附算式　【推論】工程或商業判斷　【假設】待實測或詢價更新<br>
-    <b>方括號小標籤</b>（例如 <span class="cid">C1-3</span>）是論點編號，可在「研究查核附錄」查到來源與查核說明。
+    ${doc.idNote || '<b>方括號小標籤</b>（例如 <span class="cid">C1-3</span>）是論點編號，可在「研究查核附錄」查到來源與查核說明。'}
     <div class="note">限制：本研究環境無法直接開啟網頁，所有查核依據搜尋結果摘要；放入對外文件的重要數字，請再人工打開原文核對。</div>
   </div>
 </section>`
