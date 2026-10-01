@@ -8,6 +8,7 @@ const HERE = path.dirname(new URL(import.meta.url).pathname)
 const REPO = path.resolve(HERE, '../../..')
 const R = `${REPO}/docs/research/2026-09-28-deep-research`
 const T1 = `${REPO}/docs/engineering/T1-inspection-station`
+const PLAN = `${REPO}/docs/plan`
 const OUT = `${REPO}/docs/pdf`
 const FONT = `file://${HERE}/node_modules/@fontsource/noto-sans-tc`
 
@@ -96,6 +97,22 @@ const DOCS = [
     ],
   },
   {
+    file: '09_NewTech_第一年活動計劃表.pdf',
+    title: 'New Tech<br>第一年活動計劃表<br><span style="font-size:15pt;font-weight:500">2026 年 10 月至 2027 年 9 月</span>',
+    plainTitle: 'New Tech 第一年活動計劃表',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋研究第 1–9 章',
+    parts: [[`${PLAN}/01-newtech-year1-plan.md`, null]],
+  },
+  {
+    file: '10_上市計劃_2026至2031.pdf',
+    title: '集團上市計劃<br><span style="font-size:15pt;font-weight:500">2026 年第 4 季至 2031 年上櫃</span>',
+    plainTitle: '集團上市計劃',
+    date: '2026 年 10 月 1 日',
+    basis: '交接包【定案】＋研究第 1–9 章＋上櫃規定查核',
+    parts: [[`${PLAN}/02-ipo-roadmap.md`, null]],
+  },
+  {
     file: '04_研究查核附錄_282條論點.pdf',
     title: '五面向深度研究<br>查核附錄（282 條論點與來源）',
     plainTitle: '研究查核附錄',
@@ -136,6 +153,19 @@ a { color: #1f5f99; text-decoration: none; word-break: break-all; }
 .cid { font-size: 7.2pt; color: #6e7781; background: #eef1f4; border-radius: 3px; padding: 0 3px; margin: 0 1px; white-space: nowrap; vertical-align: 1px; }
 .chapter { break-before: page; }
 .chapter:first-of-type { break-before: auto; }
+/* 甘特圖 */
+table.gantt { table-layout: fixed; font-size: 7.4pt; line-height: 1.3; }
+table.gantt th, table.gantt td { text-align: center; padding: 4px 1px; }
+table.gantt th:first-child, table.gantt td:first-child { text-align: left; width: 31%; padding-left: 5px; font-size: 7.8pt; }
+table.gantt td.w { background: #a9cbe8 !important; }
+table.gantt td.d { background: #2f7fb8 !important; color: #fff; }
+table.gantt td.k { background: #c0392b !important; color: #fff; font-weight: 700; }
+table.gantt td.p { background: #e3e8ee !important; color: #6e7781; }
+table.gantt.wide th:first-child, table.gantt.wide td:first-child { width: 22%; }
+.pb { break-before: page; height: 0; }
+p.legend { font-size: 8pt; color: #444; margin: -6px 0 10px; }
+.lg { display: inline-block; width: 12px; height: 9px; border-radius: 2px; margin: 0 3px 0 10px; vertical-align: -1px; }
+.lg.w { background: #a9cbe8; } .lg.d { background: #2f7fb8; } .lg.k { background: #c0392b; } .lg.p { background: #e3e8ee; border: 1px solid #c9d3dd; }
 /* 封面 */
 .cover { height: 250mm; display: flex; flex-direction: column; break-after: page; }
 .cover .band { background: #0b3d63; color: #fff; padding: 34mm 14mm 16mm; border-radius: 6px; }
@@ -166,7 +196,7 @@ function cover(doc) {
   <div class="band">
     <div class="org">晨森 NEW TECH ・ 窗簾自動化事業</div>
     <div class="title">${doc.title}</div>
-    <div class="meta">呈：黃悟庭 社長<br>日期：${doc.date || '2026 年 9 月 28 日'}<br>依據：2026-09-28 研究交接包</div>
+    <div class="meta">呈：黃悟庭 社長<br>日期：${doc.date || '2026 年 9 月 28 日'}<br>依據：${doc.basis || '2026-09-28 研究交接包'}</div>
   </div>
   <div class="legend">
     <b>查核狀態圖例</b>　✅ 已驗證　🟡 部分驗證（使用查核後修正版）　⚪ 無法驗證（不作決策依據）　❌ 已推翻<br>
